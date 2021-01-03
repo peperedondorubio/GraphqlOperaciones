@@ -1,0 +1,24 @@
+query GetCurrentUserReviews {
+  me {
+    username
+    reviews {
+      body
+      author { id, username, name }
+      product {
+        name
+        upc
+        price
+      }
+    }
+  }
+}
+
+
+
+
+query TopProductos {
+  topProducts(first : 2)
+  {
+    name
+  }
+}
