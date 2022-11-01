@@ -24,7 +24,7 @@ const start = async function()
       })
 
 /*+++++++++++++++++++++++++++++++++++++++*/
-
+      
     var recojoProductos = JSON.parse( await client.get('Productos') )
     console.log(recojoProductos)
 
