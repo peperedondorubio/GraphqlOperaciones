@@ -5,7 +5,7 @@
   },
   "dependencies": {
     "@apollo/federation": "latest",
-    "apollo-server": "latest",
+    "apollo-server": "^2.25.1",
     "graphql": "latest"
   }
 }

@@ -13,7 +13,7 @@ const gateway = new ApolloGateway({
   __exposeQueryPlanExperimental: false,
 });
 
-(async () => {
+( async() => {
   const server = new ApolloServer({
     gateway,
     engine: false,

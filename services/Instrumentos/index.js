@@ -59,7 +59,7 @@ const resolvers = {
       };
     },
 
-    instrumentos(operacion){
+    instrumentos (operacion){
       return misInstrumentos.filter(op => op.idOp == operacion.id);
     },
 
@@ -132,40 +132,40 @@ const nombresProducto = [
 
 const misInstrumentos = [
   {
-    id: 1,
-    idOp: 2,
-    liquidado: true,
-    enPlazo: false
+    "id": 1,
+    "idOp": 2,
+    "liquidado": true,
+    "enPlazo": false
   },
   {
-    id: 2,
-    idOp:1,
-    liquidado: false,
-    enPlazo: true
+    "id": 2,
+    "idOp":1,
+    "liquidado": false,
+    "enPlazo": true
   },
   {
-    id: 3,
-    idOp: 1,
-    liquidado: true,
-    enPlazo: false
+    "id": 3,
+    "idOp": 1,
+    "liquidado": true,
+    "enPlazo": false
   },
   {
-    id: 4,
-    idOp: 3,
-    liquidado: true,
-    enPlazo: false
+    "id": 4,
+    "idOp": 3,
+    "liquidado": true,
+    "enPlazo": false
   },
   {
-    id: 5,
-    idOp: 3,
-    liquidado: false,
-    enPlazo: true
+    "id": 5,
+    "idOp": 3,
+    "liquidado": false,
+    "enPlazo": true
   },
   {
-    id: 6,
-    idOp: 2,
-    liquidado: true,
-    enPlazo: true
+    "id": 6,
+    "idOp": 2,
+    "liquidado": true,
+    "enPlazo": true
   }
 ];
 

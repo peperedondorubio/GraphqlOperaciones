@@ -80,24 +80,24 @@ server.listen({ port: 4002 }).then(({ url }) => {
 
 const misFlujos = [
   {
-    id: 1,
-    instruccionesLiquidacion: "IL de la uno",
-    cash: 1234
+    "id": 1,
+    "instruccionesLiquidacion": "IL de la uno",
+    "cash": 1234
   },
   {
-    id: 2,
-    instruccionesLiquidacion: "IL de la dos",
-    titulo: "Bono"
+    "id": 2,
+    "instruccionesLiquidacion": "IL de la dos",
+    "titulo": "Bono"
   },
   {
-    id: 3,
-    instruccionesLiquidacion: "IL de la tres",
-    cash: 45.7
+    "id": 3,
+    "instruccionesLiquidacion": "IL de la tres",
+    "cash": 45.7
   },
   {
-    id: 4,
-    instruccionesLiquidacion: "IL de la cuatro",
-    titulo: "Swap"
+    "id": 4,
+    "instruccionesLiquidacion": "IL de la cuatro",
+    "titulo": "Swap"
   }
 ];
 

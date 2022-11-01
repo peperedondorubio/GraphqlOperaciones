@@ -8,8 +8,7 @@ node ./instrumentos/index.js &
 node ./operaciones/index.js &
 node ./flujos/index.js &
 node ./productos/index.js &
-node ../gateway.js &
-h "node ./"
+ps -ef | grep -v grep | grep "node ./"
 date 
 
 echo "------------------------------" 

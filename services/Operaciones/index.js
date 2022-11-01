@@ -1,5 +1,6 @@
 const { ApolloServer, gql } = require("apollo-server");
 const { buildFederatedSchema } = require("@apollo/federation");
+//var miCartera;
 
 const typeDefs = gql`
   extend type Query {
@@ -66,31 +67,82 @@ server.listen({ port: 4001 }).then(({ url }) => {
   console.log(`🚀 Operaciones y Cartera activos en: ${url}`);
 });
 
+
+
+
+
 //
 // Datos
 //
 
+/*
+
+const cadConex = 'mongodb+srv://dbGraphQL:sabbath@pepeclustermongodb.njocn.mongodb.net/myFirstDatabase?retryWrites=true&w=majority&useUnifiedTopology=true';
+const nombreBaseDatos = 'DemoGraphQL';
+const nombreColeccion = "Operaciones";
+
+var miCartera;
+
+const { MongoClient } = require('mongodb');
+
+const client = new MongoClient(cadConex, {useUnifiedTopology: true});
+
+
+const conectarse  = async () => {
+
+  await client.connect();
+  db = client.db(nombreBaseDatos);
+  var cursor = db.collection(nombreColeccion).find();   // Cursor 
+
+  cursor.each(function(err,doc) {       // Me muevo por la colección
+      if (err)
+          throw err;
+          
+      if(doc != null)
+      {
+          miCartera = doc  // Recojo los datos en json
+          // console.log(miCartera)  
+      }
+  });
+
+};
+
+
+const init = async () => {
+
+  await conectarse(); // obtenemos la conexión
+
+  server.listen({ port: 4001 }).then(({ url }) => {
+    console.log(`🚀 Operaciones y Cartera activos en: ${url}`);
+  });
+
+};
+
+init();
+
+*/
+
 const miCartera = {
-  nombre: "Largo Plazo",
-  delta: 134.5,
-  operaciones: [
+  "nombre": "Largo Plazo",
+  "delta": 134.5,
+  "operaciones": [
     {
-      id: 1,
-      nombre: "Op1",
-      contrapartida: "Telefónica",
-      fechaValor: "10/10/2020"
+      "id": 1,
+      "nombre": "Op1",
+      "contrapartida": "Telefónica",
+      "fechaValor": "10/10/2020"
     },
     {
-      id: 2,
-      nombre: "Op2",
-      contrapartida: "Repsol",
-      fechaValor: "15/12/2020"
+      "id": 2,
+      "nombre": "Op2",
+      "contrapartida": "Repsol",
+      "fechaValor": "15/12/2020"
     },
     {
-      id: 3,
-      nombre: "Op3",
-      contrapartida: "JPMorgan",
-      fechaValor: "22/05/2019"
+      "id": 3,
+      "nombre": "Op3",
+      "contrapartida": "JPMorgan",
+      "fechaValor": "22/05/2019"
     }
   ]};
 
