@@ -75,7 +75,7 @@ server.listen({ port: 4003 }).then(({ url }) => {
 const start = async function() 
 {
   const client = redis.createClient();
-  client.connect()
+  client.connect();
   
   const prm = keys => new Promise( (resolve, reject) => 
   {
@@ -87,7 +87,6 @@ const start = async function()
 
   const redisLoader = new DataLoader(prm);
   const carga = await redisLoader.loadMany(['Productos'])
-
   productos = await JSON.parse(carga[0])
   
   console.log(productos)
