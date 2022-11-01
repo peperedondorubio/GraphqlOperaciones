@@ -2,8 +2,10 @@ const { ApolloServer, gql } = require("apollo-server");
 const { buildFederatedSchema } = require("@apollo/federation");
 const redis = require('redis');
 const DataLoader = require('dataloader');
-var productos;
 
+var productos;
+var redisLoader;
+var promesaCarga;
 
 const typeDefs = gql`
   extend type Query {
@@ -21,18 +23,18 @@ const typeDefs = gql`
 const resolvers = {
   Producto: {
     __resolveReference(object) {
+      console.log("Producto: ", object)
       return productos.find(Producto => Producto.id === object.id);
     }
   },
   Query: {
     
     ProductosMasUsados(_, args) {
+      console.log("PMU: ", args)
       return productos.slice(0, args.first);
     },
 
     GetProducto (_, {identificador}) {
-    
-      console.log(identificador)
       return productos.find(Producto => Producto.id === identificador)
     }
     
@@ -53,6 +55,47 @@ server.listen({ port: 4003 }).then(({ url }) => {
 
 });
 
+const prometoCargarRedis = async function() 
+{
+  const client = redis.createClient();
+  client.connect();
+  
+  const prm = keys => new Promise( (resolve, reject) => 
+  {
+    p1 = client.mGet(keys) ;
+    console.log("Leo de Redis: ", keys)
+    resolve (p1);
+
+  })
+
+  redisLoader = new DataLoader(prm);
+  return prm
+}
+
+const cargaRedis =  async function() 
+{
+  const carga = await redisLoader.loadMany(['Productos'])
+  productos = await JSON.parse(carga[0])
+  console.log(productos)
+}
+
+promesaCarga = prometoCargarRedis ();
+
+promesaCarga.then(() => {
+  cargaRedis(); 
+  console.log("GetProducto: ", productos)
+})
+
+/* 
+{
+  ProductosMasUsados(first: 1)
+  {
+    id
+    nombre
+  }
+} */
+
+
 /* const productos = [
   {
     "id": 1,
@@ -71,37 +114,3 @@ server.listen({ port: 4003 }).then(({ url }) => {
   }
 ];
 */ 
-
-const start = async function() 
-{
-  const client = redis.createClient();
-  client.connect();
-  
-  const prm = keys => new Promise( (resolve, reject) => 
-  {
-    p1 = client.mGet(keys) ;
-    console.log("Leo de Redis: ", keys)
-    resolve (p1);
-
-  })
-
-  const redisLoader = new DataLoader(prm);
-  const carga = await redisLoader.loadMany(['Productos'])
-  productos = await JSON.parse(carga[0])
-  
-  console.log(productos)
-
-}
-
-start ();
-
-
-
-/* 
-{
-  ProductosMasUsados(first: 1)
-  {
-    id
-    nombre
-  }
-} */
